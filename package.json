@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/nickjj/manifest-revision-webpack-plugin",
   "dependencies": {
+    "md5": "^2.1.0",
     "walk": "^2.3.9"
   },
   "peerDependencies": {

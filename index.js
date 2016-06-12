@@ -1,6 +1,6 @@
 var fs = require('fs');
+var md5 = require('md5');
 var path = require('path');
-
 var webpack = require('webpack');
 var walk = require('walk');
 
@@ -171,6 +171,11 @@ ManifestRevisionPlugin.prototype.apply = function (compiler) {
 
         if (typeof outputData === 'object') {
             outputData = JSON.stringify(outputData);
+        }
+
+        // Add the md5 hash to the file name if compiling for a Rails app
+        if (self.options.format === 'rails') {
+          output = output.replace(/\.json$/, '-' + md5(outputData) + '.json');
         }
 
         fs.writeFileSync(output, String(outputData));
